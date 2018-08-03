@@ -16,8 +16,8 @@ end_url = "&sess=no&type=download/Certificate.png"
 
 img_list = []
 
-# for index, row in df.iterrows():
-for index, row in df[:300].iterrows():
+for index, row in df.iterrows():
+# for index, row in df[:300].iterrows():
     print("---------" + row['VIN'] + "----------")
     # img_name = "./img/Cert_" + row['VIN'] + ".png"
     img_name = "Cert_" + row['VIN'] + ".png"
