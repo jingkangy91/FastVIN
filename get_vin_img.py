@@ -12,8 +12,9 @@ df.drop(df.index[-5:], inplace=True)
 begin_url = "http://application.vidc.info/Scripts/ImageHandler.ashx?vin="
 end_url = "&sess=no&type=download/Certificate.png"
 
-for index, row in df.iterrows():
-# for index, row in df[:1].iterrows():
+# for index, row in df.iterrows():
+for index, row in df[:3].iterrows():
+    print("---------" + row['VIN'] + "----------")
     url = begin_url + row['VIN'] + end_url
 
     # payload = {
