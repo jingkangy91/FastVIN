@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+from fpdf import FPDF
 
 filename = 'vin_list.csv'
 df = pd.read_csv(filename)
@@ -11,6 +12,8 @@ df.drop(df.index[-5:], inplace=True)
 
 begin_url = "http://application.vidc.info/Scripts/ImageHandler.ashx?vin="
 end_url = "&sess=no&type=download/Certificate.png"
+
+img_list = []
 
 # for index, row in df.iterrows():
 for index, row in df[:3].iterrows():
@@ -36,6 +39,14 @@ for index, row in df[:3].iterrows():
     # print(req.cookies.get_dict())
 
     req = requests.get(url, stream=True)
-    imgname = "./img/Cert_" + row['VIN'] + ".png"
-    with open(imgname, 'wb') as f:
+    img_name = "./img/Cert_" + row['VIN'] + ".png"
+    img_list.append(img_name)
+
+    with open(img_name, 'wb') as f:
         f.write(req.content)
+
+pdf = FPDF()
+for img in img_list:
+    pdf.add_page()
+    pdf.image(img)
+pdf.output("list.pdf", "F")
