@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 # from fpdf import FPDF
 import os
+import subprocess
 
 filename = 'vin_list.csv'
 df = pd.read_csv(filename)
@@ -21,12 +22,13 @@ for index, row in df.iterrows():
     print("---------" + row['VIN'] + "----------")
     # img_name = "./img/Cert_" + row['VIN'] + ".png"
     img_name = "Cert_" + row['VIN'] + ".png"
+    pdf_name = "Cert_" + row['VIN'] + ".pdf"
 
     # Check is exist or not
-    if img_name in os.listdir('./img'):
-        print(img_name + " is already exist.")
+    if img_name in os.listdir('img'):
+        print(img_name + " already exists.")
     else:
-        img_name = "./img/" + img_name
+        # img_name = "./img/" + img_name
         url = begin_url + row['VIN'] + end_url
 
         # payload = {
@@ -50,11 +52,22 @@ for index, row in df.iterrows():
         req = requests.get(url, stream=True)
         # img_list.append(img_name)
 
-        with open(img_name, 'wb') as f:
+        with open('img/' + img_name, 'wb') as f:
             f.write(req.content)
+        print(img_name + " has been downloaded.")
+
+    if pdf_name in os.listdir('pdf'):
+        print(pdf_name + " already exists.")
+    else:
+        # pdf_name = "./pdf/" + pdf_name
+        cmd = ['convert', 'img/' + img_name, 'pdf/' + pdf_name]
+        subprocess.call(cmd)
+        print(pdf_name + " has been created.")
 
 # pdf = FPDF()
 # for img in img_list:
 #     pdf.add_page()
 #     pdf.image(img)
 # pdf.output("list.pdf", "F")
+
+# cmd = ['convert', ]
