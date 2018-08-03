@@ -12,8 +12,8 @@ df.drop(df.index[-5:], inplace=True)
 begin_url = "http://application.vidc.info/Scripts/ImageHandler.ashx?vin="
 end_url = "&sess=no&type=download/Certificate.png"
 
-# for index, row in df.iterrows():
-for index, row in df[:1].iterrows():
+for index, row in df.iterrows():
+# for index, row in df[:1].iterrows():
     url = begin_url + row['VIN'] + end_url
 
     # payload = {
@@ -35,5 +35,6 @@ for index, row in df[:1].iterrows():
     # print(req.cookies.get_dict())
 
     req = requests.get(url, stream=True)
-    with open('./img/cert.png', 'wb') as f:
+    imgname = "./img/Cert_" + row['VIN'] + ".png"
+    with open(imgname, 'wb') as f:
         f.write(req.content)
