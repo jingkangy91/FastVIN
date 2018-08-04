@@ -39,13 +39,14 @@ for index, row in df.iterrows():
         }
         req = requests.get(url, stream=True)
 
-        with open('img/' + img_name, 'wb') as f:
+        with open(os.path.join('img',img_name), 'wb') as f:
             f.write(req.content)
         print(img_name + " has been downloaded.")
 
     if pdf_name in os.listdir('pdf'):
         print(pdf_name + " already exists.")
     else:
-        cmd = ['convert', 'img/' + img_name, 'pdf/' + pdf_name]
+        cmd = ['convert', os.path.join('img',img_name),
+            os.path.join('pdf',pdf_name)]
         subprocess.call(cmd)
         print(pdf_name + " has been created.")
