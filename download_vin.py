@@ -3,6 +3,8 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
+os.makedirs('img', exist_ok=True)
+
 list_name = input(
     "Please input VIN list filename in 'list' dir (default 'vin_list.csv'):\n"
 )
