@@ -1,5 +1,6 @@
 import PyPDF2, os
 import pandas as pd
+import subprocess
 
 list_name = input(
     "Please input VIN list filename in 'list' dir (default 'vin_list.csv'):\n"
@@ -22,7 +23,9 @@ for index, row in df.iterrows():
     
 # with open('vin_list.pdf', 'wb') as f:
 #     merger.write(f)
-merger.write('vin_list.pdf')
+
+output_name = list_name[:-3] + 'pdf'
+merger.write(output_name)
 
     # if pdf_name in os.listdir('pdf'):
     #     print(pdf_name + " already exists.")
@@ -30,3 +33,6 @@ merger.write('vin_list.pdf')
     #     cmd = ['convert', 'img/'+ img_name, 'pdf/' + pdf_name]
     #     subprocess.call(cmd)
     #     print(pdf_name + " has been created.")
+
+cmd = ['lpr', output_name]
+subprocess.call(cmd)
