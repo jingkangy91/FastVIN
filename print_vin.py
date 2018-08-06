@@ -1,15 +1,18 @@
 import PyPDF2, os
 import pandas as pd
 import subprocess
+import namereading
 
-list_name = input(
-    "Please input VIN list filename in 'list' dir (default 'vin_list.csv'):\n"
-)
-if list_name == '':
-    # list_name = 'vin_list.csv'
-    list_name = 'vin_list_test.csv'
-df = pd.read_csv(os.path.join('list', list_name))
-df.dropna(inplace=True)
+# list_name = input(
+#     "Please input VIN list filename in 'list' dir (default 'vin_list.csv'):\n"
+# )
+# if list_name == '':
+#     # list_name = 'vin_list.csv'
+#     list_name = 'vin_list_test.csv'
+# df = pd.read_csv(os.path.join('list', list_name))
+# df.dropna(inplace=True)
+
+df, list_name = namereading.read_name()
 
 merger = PyPDF2.PdfFileMerger()
 for index, row in df.iterrows():
