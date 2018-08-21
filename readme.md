@@ -18,8 +18,8 @@
 
 ## How to use
 
-1. Create a new directory named 'list', and put the CSV file of VIN list inside the folder.
+1. Open folder 'FastVIN', paste the CSV file of VIN list inside the folder 'list', if the folder does not exist, create it.
 2. Right click 'Program_for_VIN', in Services at the bottom, select 'New iTerm2 Window Here'.
-3. To download VIN pictures, type './1_download_vin.py' in terminal, then type the file name of VIN list, 'vin_list.csv' is default.
+3. To download VIN pictures, type './1_download_vin.py' in terminal, then type the file name of VIN list, 'vin_list.csv' is the default.
 4. To convert VIN pictures to pdfs, type './2_convert_vin.py' in terminal, then type the file name.
 5. After conversion, it will combine all pdfs into one, if you want to print it, please type 'Y'.
