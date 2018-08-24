@@ -28,6 +28,6 @@ output_name = list_name[:-3] + 'pdf'
 merger.write(output_name)
 
 print_or_not = input("Do you want to print it? (Y or Yes to print)\n")
-if print_or_not == 'Y':
+if print_or_not.lower() == 'y' or 'yes':
     cmd = ['lpr', output_name]
     subprocess.call(cmd)
