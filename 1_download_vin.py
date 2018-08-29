@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import requests
 from bs4 import BeautifulSoup
+import subprocess
 import namereading
 
 os.makedirs('img', exist_ok=True)
@@ -31,3 +32,8 @@ for index, row in df.iterrows():
         with open(os.path.join('img',img_name), 'wb') as f:
             f.write(req.content)
         print(img_name + " has been downloaded.")
+    
+continue_or_not = input("Do you want to continue to convert imgs?\n")
+if continue_or_not.lower() == 'y' or 'yes':
+    cmd = ['python', '2_convert_vin.py']
+    subprocess.call(cmd)
