@@ -21,7 +21,7 @@ for index, row in df.iterrows():
         cmd = ['convert', 'img/'+ img_name, 'pdf/' + pdf_name]
         subprocess.call(cmd)
         print(pdf_name + " has been created.")
-    
+
     merger.append('pdf/' + pdf_name)
 
 output_name = list_name[:-3] + 'pdf'
