@@ -22,7 +22,7 @@
    type the file name.
 5. After conversion, it will combine all pdfs into one, if you want to print it,
    please type 'Y'.
-** TODO
+** TODO Prepare to do
 1. Change 'convert' to 'PIL', and save with append list.
 2. Rewrite readme with org.
 3. Combine 1_download and 2_convert together.
@@ -33,3 +33,6 @@
 8. Try to use Pyinstaller on Windows.
 9. Change default dir (img, pdf) and default name of excel file.
 10. Try exe on other Mac OS.
+
+** Pyinstaller
+pyinstaller -F fastVIN.py -n FastVIN.exe
