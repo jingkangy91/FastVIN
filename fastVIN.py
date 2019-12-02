@@ -6,13 +6,29 @@ import requests
 # import PyPDF2
 from PIL import Image
 from bs4 import BeautifulSoup
-import namereading
+# import namereading
+
+def read_name():
+    vin_name = input(
+        "Please input VIN list filename in 'vin' dir " +
+        "(default 'vin_list.csv'):\n"
+    )
+    if vin_name == '':
+        vin_name = 'vin_list.csv'
+        # vin_name = 'vin_list_test.csv'
+    df = pd.read_csv(os.path.join('vin', vin_name))
+    df.dropna(inplace=True)
+
+    return df, vin_name
 
 os.makedirs('vin', exist_ok=True)
 os.makedirs('img', exist_ok=True)
 os.makedirs('pdf', exist_ok=True)
 
-df, vin_name = namereading.read_name()
+# df, vin_name = namereading.read_name()
+df, vin_name = read_name()
+num_of_vins = len(df)
+
 pdf_name = vin_name.split('.')[0] + '.pdf'
 
 begin_url = "http://application.vidc.info/Scripts/ImageHandler.ashx?vin="
@@ -20,7 +36,8 @@ end_url = "&sess=no&type=download/Certificate.png"
 
 img_list = []
 for index, row in df.iterrows():
-    print("---------" + row['VIN'] + "----------")
+    print("[" + str(index + 1) + "/" + str(num_of_vins) + "]---------"
+          + row['VIN'] + "----------")
     img_name = "Cert_" + row['VIN'] + ".png"
 
     if img_name in os.listdir('img'):
