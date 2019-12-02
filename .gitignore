@@ -1,6 +1,9 @@
 .DS_Store
 .vscode
 __pycache__
+build
+dist
+*.spec
 img/
 pdf/
 list/
