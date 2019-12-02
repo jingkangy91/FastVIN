@@ -34,5 +34,27 @@
 9. Change default dir (img, pdf) and default name of excel file.
 10. Try exe on other Mac OS.
 
+
+** Settings
+Set up fastvin enivronment by
+
+#+BEGIN_SRC shell
+conda create -n fastvin python=3.6
+conda install pyinstaller
+#+END_SRC
 ** Pyinstaller
+*** Mac OS
+#+BEGIN_SRC shell
 pyinstaller -F fastVIN.py -n FastVIN.exe
+#+END_SRC
+
+*** Windows
+Before pyinstaller 3.5
+#+BEGIN_SRC shell
+pyinstaller -F --hidden-import pandas \
+               --hidden-import="pandas._libs.tslibs.timedeltas" \
+               --hidden-import="pandas._libs.tslibs.np_datetime" \
+               --hidden-import="pandas._libs.tslibs.nattype" \
+               --hidden-import="pandas._libs.skiplist" \
+               fastVIN.py -n FastVIN.exe
+#+END_SRC
