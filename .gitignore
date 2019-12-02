@@ -1,10 +1,12 @@
 .DS_Store
 .vscode
 __pycache__
-build
-dist
+build/
+dist/
 *.spec
+*.exe
+bak/
+vin/
 img/
 pdf/
-list/
 *.pdf
