@@ -3,10 +3,8 @@
 import os
 import pandas as pd
 import requests
-# import PyPDF2
 from PIL import Image
 from bs4 import BeautifulSoup
-# import namereading
 
 def read_name():
     vin_name = input(
@@ -21,11 +19,12 @@ def read_name():
 
     return df, vin_name
 
-os.makedirs('vin', exist_ok=True)
+if not os.path.exists('vin') is True:
+    print("Please check 'vin' folder.")
+
 os.makedirs('img', exist_ok=True)
 os.makedirs('pdf', exist_ok=True)
 
-# df, vin_name = namereading.read_name()
 df, vin_name = read_name()
 num_of_vins = len(df)
 
@@ -64,5 +63,6 @@ for index, row in df.iterrows():
     else:
         img_list.append(im)
 
-# im = Image.new('RGB')
+print("Try to convert images to a pdf file.")
 im0.save(os.path.join('pdf',pdf_name), save_all=True, append_images=img_list)
+print("Done.")
