@@ -1,4 +1,4 @@
-#!/anaconda3/bin/python
+#!/usr/local/anaconda3/envs/fastvin/bin/python
 import os
 import pandas as pd
 import PyPDF2
